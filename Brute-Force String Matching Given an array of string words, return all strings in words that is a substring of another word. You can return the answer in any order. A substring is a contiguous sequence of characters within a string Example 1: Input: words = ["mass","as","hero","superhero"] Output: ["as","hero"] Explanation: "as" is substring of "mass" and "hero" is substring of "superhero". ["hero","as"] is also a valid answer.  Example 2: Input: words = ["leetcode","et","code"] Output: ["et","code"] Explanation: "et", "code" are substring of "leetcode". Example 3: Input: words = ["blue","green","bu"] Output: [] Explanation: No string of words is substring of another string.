@@ -1,0 +1,7 @@
+def find_substrings(words):
+    return [w for i, w in enumerate(words) if any(w in other for j, other in enumerate(words) if i != j)]
+
+# Example usage
+print(find_substrings(["mass","as","hero","superhero"]))  # Output: ["as","hero"]
+print(find_substrings(["leetcode","et","code"]))          # Output: ["et","code"]
+print(find_substrings(["blue","green","bu"]))             # Output: []
