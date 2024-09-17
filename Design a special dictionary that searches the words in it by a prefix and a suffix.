@@ -1,0 +1,15 @@
+class WordFilter:
+    def __init__(self, words):
+        self.words = words
+        self.prefix_suffix = {}
+        for i, word in enumerate(words):
+            for j in range(len(word) + 1):
+                self.prefix_suffix[word[:j]] = self.prefix_suffix.get(word[:j], []) + [i]
+
+    def f(self, pref, suff):
+        candidates = self.prefix_suffix.get(pref, [])
+        return max((i for i in candidates if self.words[i].endswith(suff)), default=-1)
+
+# Example usage
+wf = WordFilter(["apple"])
+print(wf.f("a", "e"))  # Output: 0
