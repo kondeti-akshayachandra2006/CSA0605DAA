@@ -1,0 +1,9 @@
+# Define the array
+array = [2, 4, 6, 8, 10, 12, 14, 18]
+
+# Find minimum and maximum values
+minimum_value = min(array)
+maximum_value = max(array)
+
+# Output the results
+print(f"Min = {minimum_value}, Max = {maximum_value}")
