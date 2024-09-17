@@ -1,0 +1,6 @@
+def reduce_string(s):
+    while s:
+        for c in 'abcdefghijklmnopqrstuvwxyz':
+            s = s.replace(c, '', 1)
+        if not s: return ''
+    return s
