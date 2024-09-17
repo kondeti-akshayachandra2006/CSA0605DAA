@@ -1,0 +1,30 @@
+import numpy as np
+
+# Initialize distance matrix
+dist = np.array([[0, 3, np.inf, np.inf, np.inf, np.inf],
+                 [3, 0, 1, np.inf, np.inf, np.inf],
+                 [np.inf, 1, 0, 7, np.inf, np.inf],
+                 [np.inf, np.inf, 7, 0, 2, 3],
+                 [np.inf, np.inf, np.inf, 2, 0, 1],
+                 [np.inf, np.inf, np.inf, 3, 1, 0]])
+
+# Floyd's Algorithm
+for k in range(len(dist)):
+    for i in range(len(dist)):
+        for j in range(len(dist)):
+            dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j])
+
+# Shortest path before link failure
+print("Router A to Router F =", int(dist[0][5]))
+
+# Simulate link failure between Router B and Router D
+dist[1][3] = dist[3][1] = np.inf
+
+# Re-run Floyd's Algorithm after link failure
+for k in range(len(dist)):
+    for i in range(len(dist)):
+        for j in range(len(dist)):
+            dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j])
+
+# Shortest path after link failure
+print("Router A to Router F =", int(dist[0][5]))
