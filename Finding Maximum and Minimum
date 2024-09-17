@@ -1,0 +1,13 @@
+def find_max_min(arr):
+    max_val = max(arr)
+    min_val = min(arr)
+    return max_val, min_val
+
+# Input array
+arr = [5, 7, 3, 4, 9, 12, 6, 2]
+
+# Find maximum and minimum values
+max_val, min_val = find_max_min(arr)
+
+# Output
+print(f"Min = {min_val}, Max = {max_val}")
