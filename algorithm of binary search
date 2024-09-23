@@ -1,0 +1,19 @@
+def binary_search(arr, target):
+    left, right = 0, len(arr) - 1
+    while left <= right:
+        mid = (left + right) // 2
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+    return -1
+
+# Sorted array
+arr = [3, 9, 14, 19, 25, 31, 42, 47, 53]
+target = 31
+position = binary_search(arr, target)
+
+# Mid-point calculations
+print(f"Element {target} found at index: {position}")
