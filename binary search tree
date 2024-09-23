@@ -1,0 +1,41 @@
+import numpy as np
+
+def optimal_bst(keys, freq):
+    n = len(keys)
+    cost = np.zeros((n, n))
+    root = np.zeros((n, n), dtype=int)
+
+    for i in range(n):
+        cost[i][i] = freq[i]
+
+    for length in range(2, n + 1):
+        for i in range(n - length + 1):
+            j = i + length - 1
+            cost[i][j] = float('inf')
+            for r in range(i, j + 1):
+                c = (cost[i][r - 1] if r > i else 0) + (cost[r + 1][j] if r < j else 0) + sum(freq[i:j + 1])
+                if c < cost[i][j]:
+                    cost[i][j] = c
+                    root[i][j] = r
+
+    return cost, root
+
+def print_obst(root, keys, i, j):
+    if i > j:
+        return
+    r = root[i][j]
+    print(f"Node: {keys[r]}")
+    print_obst(root, keys, i, r - 1)
+    print_obst(root, keys, r + 1, j)
+
+keys = ['A', 'B', 'C', 'D']
+freq = [0.1, 0.2, 0.4, 0.3]
+cost, root = optimal_bst(keys, freq)
+
+print("Cost Matrix:")
+print(cost)
+print("Root Matrix:")
+print(root)
+print("Optimal Binary Search Tree:")
+print_obst(root, keys, 0, len(keys) - 1)
+print(f"Total Cost: {cost[0][len(keys) - 1]}")
