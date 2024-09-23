@@ -1,0 +1,10 @@
+def vertex_cover(graph):
+    cover = set()
+    edges = set(graph.edges())
+    
+    while edges:
+        u, v = edges.pop()
+        cover.update([u, v])
+        edges -= {(u, w) for w in graph.neighbors(u)} | {(v, w) for w in graph.neighbors(v)}
+    
+    return cover
