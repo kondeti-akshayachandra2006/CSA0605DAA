@@ -1,0 +1,10 @@
+def vertex_cover(graph):
+    cover = set()
+    edges = set((u, v) for u in graph for v in graph[u])
+    
+    while edges:
+        u = max(graph, key=lambda x: len(graph[x]))
+        cover.add(u)
+        edges -= {(u, v) for v in graph[u]} | {(v, u) for v in graph[u]}
+    
+    return cover
