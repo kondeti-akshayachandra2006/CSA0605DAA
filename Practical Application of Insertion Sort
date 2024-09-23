@@ -1,0 +1,19 @@
+def insertion_sort(arr):
+    for i in range(1, len(arr)):
+        key = arr[i]
+        j = i - 1
+        while j >= 0 and key < arr[j]:
+            arr[j + 1] = arr[j]
+            j -= 1
+        arr[j + 1] = key
+
+# Example applications
+applications = {
+    "Embedded Systems": "Sorting small datasets efficiently.",
+    "Real-time Data Processing": "Sorting arrays with continuously added elements.",
+    "Finance": "Maintaining sorted transaction records.",
+    "Gaming": "Sorting player scores in real-time."
+}
+
+for app, desc in applications.items():
+    print(f"{app}: {desc}")
