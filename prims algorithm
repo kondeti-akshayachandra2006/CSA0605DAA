@@ -1,0 +1,18 @@
+import heapq
+def prim(graph):
+    start = 0
+    visited = set([start])
+    edges = [(cost, start, to) for to, cost in graph[start]]
+    heapq.heapify(edges)
+    mst_cost = 0
+while edges:
+        cost, frm, to = heapq.heappop(edges)
+        if to not in visited:
+            visited.add(to)
+            mst_cost += cost
+            for to_next, cost_next in graph[to]:
+                if to_next not in visited:
+                    heapq.heappush(edges, (cost_next, to, to_next))
+    return mst_cost
+graph = {
+    0: [(1, 2), (2, 3)],
