@@ -1,0 +1,28 @@
+import numpy as np
+
+def obst(keys, freq):
+    n = len(keys)
+    cost = np.zeros((n, n))
+    root = np.zeros((n, n), dtype=int)
+
+    for i in range(n):
+        cost[i][i] = freq[i]
+
+    for length in range(2, n + 1):
+        for i in range(n - length + 1):
+            j = i + length - 1
+            cost[i][j] = float('inf')
+            for r in range(i, j + 1):
+                c = (cost[i][r - 1] if r > i else 0) + (cost[r + 1][j] if r < j else 0) + sum(freq[i:j + 1])
+                if c < cost[i][j]:
+                    cost[i][j] = c
+                    root[i][j] = r
+
+    return cost, root
+
+keys = [10, 12, 16, 21]
+freq = [4, 2, 6, 3]
+cost, root = obst(keys, freq)
+
+print("Cost Matrix:\n", cost)
+print("Root Matrix:\n", root)
