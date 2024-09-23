@@ -1,0 +1,18 @@
+def solveSudoku(board):
+    def isValid(r, c, n):
+        return all(n not in (board[r][j] for j in range(9)) and 
+                   n not in (board[i][c] for i in range(9)) and 
+                   n not in (board[i//3*3+j//3][i%3*3+j%3] for j in range(9)) 
+                   for i in range(9))
+    def backtrack():
+        for r in range(9):
+            for c in range(9):
+                if board[r][c] == '.':
+                    for n in '123456789':
+                        if isValid(r, c, n):
+                            board[r][c] = n
+                            if backtrack(): return True
+                            board[r][c] = '.'
+                    return False
+                    return True
+backtrack()
